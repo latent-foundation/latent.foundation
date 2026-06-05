@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="latent. — work in progress." />
+  <meta name="theme-color" content="#11110f" />
+
+  <title>latent.</title>
+
+  <style>
+    :root {
+      --color-bg: #11110f;
+      --color-surface: #181816;
+      --color-border-subtle: #2a2925;
+      --color-border-strong: #3a3832;
+      --color-text-primary: #e8e3d8;
+      --color-text-secondary: #aaa397;
+      --color-text-muted: #746f66;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      color: var(--color-text-primary);
+      background: var(--color-bg);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+    }
+
+    main {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .card {
+      width: min(100%, 640px);
+      border: 1px solid var(--color-border-subtle);
+      background: var(--color-surface);
+      padding: clamp(28px, 6vw, 48px);
+    }
+
+    .meta {
+      margin: 0 0 32px;
+      color: var(--color-text-muted);
+      font-family:
+        ui-monospace,
+        SFMono-Regular,
+        Menlo,
+        Monaco,
+        Consolas,
+        monospace;
+      font-size: 0.78rem;
+      letter-spacing: -0.03em;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(4rem, 16vw, 7rem);
+      line-height: 0.85;
+      font-weight: 650;
+      letter-spacing: -0.085em;
+    }
+
+    p {
+      max-width: 520px;
+      margin: 28px 0 0;
+      color: var(--color-text-secondary);
+      font-size: 1rem;
+      line-height: 1.7;
+      letter-spacing: -0.02em;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 36px;
+    }
+
+    a {
+      color: var(--color-text-primary);
+      text-decoration: none;
+      border-bottom: 1px solid var(--color-border-strong);
+      padding-bottom: 3px;
+    }
+
+    a:hover {
+      color: var(--color-text-secondary);
+    }
+
+    ::selection {
+      background: var(--color-border-strong);
+      color: var(--color-text-primary);
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <section class="card" aria-label="latent. placeholder">
+      <p class="meta">latent.foundation / work in progress</p>
+
+      <h1>latent.</h1>
+
+      <p>
+        A personal engineering lab for software projects, research tooling,
+        and long-term systems. Built by Maksymilian Neumann, a Master's Computer
+        Science student and software engineer working with Rust, Python and Java with 2+ years of professional experience.
+      </p>
+
+      <nav class="links" aria-label="links">
+        <a href="https://github.com/Spiryd">github</a>
+        <a href="https://pl.linkedin.com/in/maksymilian-neumann">linkedin</a>
+      </nav>
+    </section>
+  </main>
+</body>
+</html>
