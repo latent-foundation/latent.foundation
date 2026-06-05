@@ -12,6 +12,7 @@ use crate::data::Project;
 ///
 /// Accepts a [`Project`] by value — the type is `Copy` so no clone is needed at
 /// the call site even when iterating over a slice of projects.
+#[allow(non_snake_case)]
 #[component]
 pub fn ProjectRow(project: Project) -> impl IntoView {
     let mark = if project.splash_text.is_empty() {
@@ -22,7 +23,7 @@ pub fn ProjectRow(project: Project) -> impl IntoView {
 
     view! {
         <div class="project-row">
-            <div class="project-kanji">{mark}</div>
+            <div class="project-splash-text">{mark}</div>
             <div class="project-content">
                 <div class="project-header">
                     <span class="project-name">{project.id}</span>

@@ -3,6 +3,7 @@
 use leptos::prelude::*;
 
 /// Footer rendered below every page — copyright line and GitHub / LinkedIn links.
+#[allow(non_snake_case)]
 #[component]
 pub fn SiteFooter() -> impl IntoView {
     view! {

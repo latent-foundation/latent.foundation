@@ -16,6 +16,7 @@ use leptos_router::{components::A, hooks::use_location};
 /// Reads theme context to swap between the dark and light wordmark SVGs.
 /// `use_location()` is called to subscribe to route changes so the header
 /// re-renders when navigation occurs and `aria-current` stays accurate.
+#[allow(non_snake_case)]
 #[component]
 pub fn SiteHeader() -> impl IntoView {
     let is_dark = use_context::<RwSignal<bool>>().expect("theme context");

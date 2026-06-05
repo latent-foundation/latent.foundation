@@ -26,6 +26,7 @@ use crate::{
 ///
 /// The `fallback` renders a minimal "page not found" message for any unmatched
 /// path rather than silently showing a blank page.
+#[allow(non_snake_case)]
 #[component]
 pub fn App() -> impl IntoView {
     let is_dark = RwSignal::new(initial_theme());

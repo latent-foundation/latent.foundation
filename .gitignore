@@ -28,9 +28,10 @@ Cargo.lock
 .env*
 !.env.example
 
+# Leptos
+/dist
 
 # Added by cargo
-
 /target
 
 # VS Code config

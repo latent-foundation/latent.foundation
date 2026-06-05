@@ -5,12 +5,12 @@ default:
 # Format all Rust and Leptos code
 fmt:
     cargo fmt --all
-    leptosfmt ./**/*.rs
+    leptosfmt "src/**/*.rs"
 
 # Check formatting without modifying files
 fmt-check:
     cargo fmt --all --check
-    leptosfmt --check ./**/*.rs
+    leptosfmt --check "src/**/*.rs"
 
 # Run normal Rust checks
 check:
