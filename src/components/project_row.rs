@@ -1,7 +1,17 @@
+//! Single project entry used in both the home preview and the projects archive.
+//!
+//! The `splash_text` field (kanji / Greek script) doubles as the visual mark for
+//! each project. When it is empty, the first character of `id` is used as a
+//! fallback so the layout never collapses to an empty cell.
+
 use leptos::prelude::*;
 
 use crate::data::Project;
 
+/// Renders one row of the project list: mark, name, status badge, description, tags, year.
+///
+/// Accepts a [`Project`] by value — the type is `Copy` so no clone is needed at
+/// the call site even when iterating over a slice of projects.
 #[component]
 pub fn ProjectRow(project: Project) -> impl IntoView {
     let mark = if project.splash_text.is_empty() {

@@ -1,11 +1,26 @@
+//! Persistent site header: wordmark, navigation links, and theme toggle.
+//!
+//! `SiteHeader` consumes the `RwSignal<bool>` theme context injected by
+//! [`crate::app::App`]. Navigation uses `leptos_router`'s [`A`] component,
+//! which automatically sets `aria-current="page"` on the active link — the CSS
+//! uses that attribute for the active-link underline rather than a JS class toggle.
+//!
+//! The home link uses `exact=true` so it only activates on `/` and not on every
+//! route, since all routes share the `/` prefix.
+
 use leptos::prelude::*;
 use leptos_router::{components::A, hooks::use_location};
 
+/// Persistent header rendered above every page.
+///
+/// Reads theme context to swap between the dark and light wordmark SVGs.
+/// `use_location()` is called to subscribe to route changes so the header
+/// re-renders when navigation occurs and `aria-current` stays accurate.
 #[component]
 pub fn SiteHeader() -> impl IntoView {
     let is_dark = use_context::<RwSignal<bool>>().expect("theme context");
 
-    // suppress unused warning — location is used reactively for aria-current via the A component
+    // Subscribes to location changes so aria-current updates on navigation.
     let _ = use_location();
 
     let mark_src = move || {

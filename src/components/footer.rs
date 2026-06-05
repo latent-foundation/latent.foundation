@@ -1,5 +1,8 @@
+//! Persistent site footer with copyright notice and external profile links.
+
 use leptos::prelude::*;
 
+/// Footer rendered below every page — copyright line and GitHub / LinkedIn links.
 #[component]
 pub fn SiteFooter() -> impl IntoView {
     view! {

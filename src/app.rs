@@ -1,3 +1,10 @@
+//! Root application component and client-side router.
+//!
+//! [`App`] is the top-level Leptos component mounted by `main`. It owns the
+//! global theme signal, exposes it via context so any descendant can read or
+//! toggle the theme without prop drilling, and wraps the three-route SPA in a
+//! persistent layout shell (header + footer that survive page transitions).
+
 use leptos::prelude::*;
 use leptos_router::{
     components::{Route, Router, Routes},
@@ -10,6 +17,15 @@ use crate::{
     views::{About, Home, Projects},
 };
 
+/// Root component: initialises theme context and declares the client-side routes.
+///
+/// Route table:
+/// - `/`         → [`Home`]
+/// - `/projects` → [`Projects`]
+/// - `/about`    → [`About`]
+///
+/// The `fallback` renders a minimal "page not found" message for any unmatched
+/// path rather than silently showing a blank page.
 #[component]
 pub fn App() -> impl IntoView {
     let is_dark = RwSignal::new(initial_theme());
