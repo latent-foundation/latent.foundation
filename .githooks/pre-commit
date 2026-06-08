@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -eu
 
-just fmt-check
+# GitHub Desktop runs hooks in a minimal shell; PowerShell has the full Windows PATH.
+powershell.exe -NoProfile -NonInteractive -Command "just fmt-check"

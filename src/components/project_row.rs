@@ -3,6 +3,9 @@
 //! The `splash_text` field (kanji / Greek script) doubles as the visual mark for
 //! each project. When it is empty, the first character of `id` is used as a
 //! fallback so the layout never collapses to an empty cell.
+//!
+//! Each row is an `<a>` element linking to `/projects/{id}`. The link reset styles
+//! (`color: inherit`, `text-decoration: none`) live in `.project-row` in site.css.
 
 use leptos::prelude::*;
 
@@ -21,8 +24,10 @@ pub fn ProjectRow(project: Project) -> impl IntoView {
         project.splash_text.to_string()
     };
 
+    let href = format!("/projects/{}", project.id);
+
     view! {
-        <div class="project-row">
+        <a class="project-row" href=href>
             <div class="project-splash-text">{mark}</div>
             <div class="project-content">
                 <div class="project-header">
@@ -39,6 +44,6 @@ pub fn ProjectRow(project: Project) -> impl IntoView {
                 </div>
             </div>
             <span class="project-year">{project.year.to_string()}</span>
-        </div>
+        </a>
     }
 }
