@@ -4,35 +4,6 @@
 
 /* === FONTS === */
 @font-face {
-  font-family: "General Sans"; font-style: normal; font-weight: 300;
-  font-display: swap; src: url("fonts/GeneralSans-Light.woff2") format("woff2");
-}
-@font-face {
-  font-family: "General Sans"; font-style: normal; font-weight: 400;
-  font-display: swap; src: url("fonts/GeneralSans-Regular.woff2") format("woff2");
-}
-@font-face {
-  font-family: "General Sans"; font-style: normal; font-weight: 500;
-  font-display: swap; src: url("fonts/GeneralSans-Medium.woff2") format("woff2");
-}
-@font-face {
-  font-family: "General Sans"; font-style: normal; font-weight: 600;
-  font-display: swap; src: url("fonts/GeneralSans-Semibold.woff2") format("woff2");
-}
-@font-face {
-  font-family: "General Sans"; font-style: normal; font-weight: 700;
-  font-display: swap; src: url("fonts/GeneralSans-Bold.woff2") format("woff2");
-}
-@font-face {
-  font-family: "General Sans"; font-style: italic; font-weight: 400;
-  font-display: swap; src: url("fonts/GeneralSans-Italic.woff2") format("woff2");
-}
-@font-face {
-  font-family: "General Sans Variable"; font-style: normal; font-weight: 200 700;
-  font-display: swap; src: url("fonts/GeneralSans-Variable.woff2") format("woff2-variations");
-}
-
-@font-face {
   font-family: "Geist Mono"; font-style: normal; font-weight: 400;
   font-display: swap; src: url("fonts/GeistMono-Regular.woff2") format("woff2");
 }
@@ -121,7 +92,6 @@
 }
 
 :root {
-  --font-wordmark: "General Sans", ui-sans-serif, system-ui, sans-serif;
   --font-ui:       "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono:     "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
@@ -277,12 +247,9 @@ p {
 }
 
 .header-wordmark {
-  font-family: var(--font-wordmark);
-  font-weight: 500;
-  font-size: 18px;
-  letter-spacing: -0.045em;
-  color: var(--color-text-primary);
-  line-height: 1;
+  height: 16px;
+  width: auto;
+  display: block;
 }
 
 .site-nav {
@@ -518,7 +485,7 @@ p {
 }
 
 .project-splash-text {
-  font-family: var(--font-wordmark);
+  font-family: var(--font-ui);
   font-size: 30px;
   color: var(--color-text-muted);
   letter-spacing: -0.02em;
@@ -538,7 +505,7 @@ p {
 }
 
 .project-name {
-  font-family: var(--font-wordmark);
+  font-family: var(--font-ui);
   font-size: 22px;
   font-weight: 500;
   color: var(--color-text-primary);
@@ -621,7 +588,7 @@ p {
   display: grid;
   place-items: center;
   background: var(--color-surface);
-  font-family: var(--font-wordmark);
+  font-family: var(--font-ui);
   font-size: 30px;
   font-weight: 500;
   letter-spacing: -0.03em;
@@ -776,7 +743,7 @@ p {
 }
 
 .project-detail-splash {
-  font-family: var(--font-wordmark);
+  font-family: var(--font-ui);
   font-size: clamp(3rem, 8vw, 5rem);
   color: var(--color-text-muted);
   letter-spacing: -0.03em;
@@ -789,7 +756,7 @@ p {
 }
 
 .project-detail-name {
-  font-family: var(--font-wordmark);
+  font-family: var(--font-ui);
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 500;
   letter-spacing: -0.04em;
