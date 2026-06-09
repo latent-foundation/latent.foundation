@@ -32,13 +32,21 @@ pub fn SiteHeader() -> impl IntoView {
         }
     };
 
+    let wordmark_src = move || {
+        if is_dark.get() {
+            "/assets/latent-wordmark-dark.svg"
+        } else {
+            "/assets/latent-wordmark-light.svg"
+        }
+    };
+
     view! {
         <header class="site-header">
             <div class="header-inner">
                 // exact=true: the / route must match exactly, not prefix-match every page
                 <A href="/" exact=true attr:class="logo-link">
                     <img src=mark_src alt="" class="logo-mark" />
-                    <span class="header-wordmark">"latent."</span>
+                    <img src=wordmark_src alt="latent." class="header-wordmark" />
                 </A>
                 <nav class="site-nav">
                     <A href="/" exact=true attr:class="nav-link">

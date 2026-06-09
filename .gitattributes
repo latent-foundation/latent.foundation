@@ -1,0 +1,2 @@
+# Shell scripts must always use LF — CRLF breaks sh/bash on Windows (Git for Windows).
+.githooks/* text eol=lf

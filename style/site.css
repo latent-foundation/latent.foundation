@@ -4,35 +4,6 @@
 
 /* === FONTS === */
 @font-face {
-  font-family: "General Sans"; font-style: normal; font-weight: 300;
-  font-display: swap; src: url("fonts/GeneralSans-Light.woff2") format("woff2");
-}
-@font-face {
-  font-family: "General Sans"; font-style: normal; font-weight: 400;
-  font-display: swap; src: url("fonts/GeneralSans-Regular.woff2") format("woff2");
-}
-@font-face {
-  font-family: "General Sans"; font-style: normal; font-weight: 500;
-  font-display: swap; src: url("fonts/GeneralSans-Medium.woff2") format("woff2");
-}
-@font-face {
-  font-family: "General Sans"; font-style: normal; font-weight: 600;
-  font-display: swap; src: url("fonts/GeneralSans-Semibold.woff2") format("woff2");
-}
-@font-face {
-  font-family: "General Sans"; font-style: normal; font-weight: 700;
-  font-display: swap; src: url("fonts/GeneralSans-Bold.woff2") format("woff2");
-}
-@font-face {
-  font-family: "General Sans"; font-style: italic; font-weight: 400;
-  font-display: swap; src: url("fonts/GeneralSans-Italic.woff2") format("woff2");
-}
-@font-face {
-  font-family: "General Sans Variable"; font-style: normal; font-weight: 200 700;
-  font-display: swap; src: url("fonts/GeneralSans-Variable.woff2") format("woff2-variations");
-}
-
-@font-face {
   font-family: "Geist Mono"; font-style: normal; font-weight: 400;
   font-display: swap; src: url("fonts/GeistMono-Regular.woff2") format("woff2");
 }
@@ -121,7 +92,6 @@
 }
 
 :root {
-  --font-wordmark: "General Sans", ui-sans-serif, system-ui, sans-serif;
   --font-ui:       "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono:     "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
@@ -277,12 +247,9 @@ p {
 }
 
 .header-wordmark {
-  font-family: var(--font-wordmark);
-  font-weight: 500;
-  font-size: 18px;
-  letter-spacing: -0.045em;
-  color: var(--color-text-primary);
-  line-height: 1;
+  height: 16px;
+  width: auto;
+  display: block;
 }
 
 .site-nav {
@@ -507,7 +474,10 @@ p {
   padding: 26px 4px;
   border-bottom: 1px solid var(--color-border-subtle);
   transition: background var(--dur-fast) var(--ease-standard);
-  cursor: default;
+  cursor: pointer;
+  /* link reset — rows are <a> elements */
+  color: inherit;
+  text-decoration: none;
 }
 
 .project-row:hover {
@@ -515,7 +485,7 @@ p {
 }
 
 .project-splash-text {
-  font-family: var(--font-wordmark);
+  font-family: var(--font-ui);
   font-size: 30px;
   color: var(--color-text-muted);
   letter-spacing: -0.02em;
@@ -535,7 +505,7 @@ p {
 }
 
 .project-name {
-  font-family: var(--font-wordmark);
+  font-family: var(--font-ui);
   font-size: 22px;
   font-weight: 500;
   color: var(--color-text-primary);
@@ -618,7 +588,7 @@ p {
   display: grid;
   place-items: center;
   background: var(--color-surface);
-  font-family: var(--font-wordmark);
+  font-family: var(--font-ui);
   font-size: 30px;
   font-weight: 500;
   letter-spacing: -0.03em;
@@ -739,6 +709,141 @@ p {
 }
 
 .elsewhere-link:hover {
+  color: var(--color-text-secondary);
+}
+
+/* === PROJECT DETAIL PAGE === */
+.project-detail {
+  max-width: 720px;
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-12);
+}
+
+.back-link {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: -0.02em;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  margin-bottom: var(--space-10);
+  transition: color var(--dur-fast) var(--ease-standard);
+}
+
+.back-link:hover {
+  color: var(--color-text-secondary);
+}
+
+.project-detail-hero {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-5);
+  margin-bottom: var(--space-5);
+  flex-wrap: wrap;
+}
+
+.project-detail-splash {
+  font-family: var(--font-ui);
+  font-size: clamp(3rem, 8vw, 5rem);
+  color: var(--color-text-muted);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.project-detail-hero-body {
+  padding-bottom: 6px;
+}
+
+.project-detail-name {
+  font-family: var(--font-ui);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: var(--color-text-primary);
+  margin: 0 0 8px;
+}
+
+.project-detail-meta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.project-detail-meta-sep {
+  color: var(--color-border-strong);
+}
+
+.project-detail-tags {
+  margin-bottom: var(--space-6);
+}
+
+.project-detail-divider {
+  height: 1px;
+  background: var(--color-border-subtle);
+  margin-bottom: var(--space-6);
+}
+
+.project-detail-lead {
+  font-family: var(--font-ui);
+  font-size: 18px;
+  line-height: 1.75;
+  letter-spacing: -0.011em;
+  color: var(--color-text-secondary);
+  max-width: var(--measure);
+  margin: 0 0 var(--space-8);
+}
+
+.project-detail-section {
+  margin-top: var(--space-8);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.project-detail-section-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin: 0 0 var(--space-4);
+  font-weight: 400;
+}
+
+.project-detail-body {
+  font-family: var(--font-ui);
+  font-size: 16px;
+  line-height: 1.8;
+  letter-spacing: -0.011em;
+  color: var(--color-text-secondary);
+  max-width: var(--measure);
+  margin: 0;
+}
+
+.project-detail-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.project-detail-link {
+  font-family: var(--font-ui);
+  font-size: 15px;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-border-strong);
+  padding-bottom: 2px;
+  align-self: flex-start;
+  transition: color var(--dur-fast) var(--ease-standard);
+}
+
+.project-detail-link:hover {
   color: var(--color-text-secondary);
 }
 

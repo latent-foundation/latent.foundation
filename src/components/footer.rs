@@ -9,9 +9,7 @@ pub fn SiteFooter() -> impl IntoView {
     view! {
         <footer class="site-footer">
             <div class="footer-inner">
-                <span class="footer-meta">
-                    "latent.foundation · © 2026 · built by Maksymilian Neumann"
-                </span>
+                <span class="footer-meta">"latent. © 2026 · built by Maksymilian Neumann"</span>
                 <div class="footer-links">
                     <a
                         href="https://github.com/Spiryd"

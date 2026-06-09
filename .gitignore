@@ -36,3 +36,6 @@ Cargo.lock
 
 # VS Code config
 .vscode
+
+# General Sans — ITF Free Font License prohibits redistribution in public repos
+style/fonts/GeneralSans*
