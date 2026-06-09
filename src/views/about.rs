@@ -65,7 +65,7 @@ pub fn About() -> impl IntoView {
                         <span class="text-primary">"ido"</span> " and "
                         <span class="text-primary">"logos"</span>
                         " in the open. Writing when something is worth writing down. "
-                        "Fulltime and fullstack software engineer @ BNY"
+                        "Fulltime and fullstack software engineer @ BNY."
                     </span>
                 </div>
                 <div class="facts-grid">
