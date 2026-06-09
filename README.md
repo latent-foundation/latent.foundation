@@ -1,6 +1,6 @@
 # latent.foundation
 
-Source code for [latent.foundation](https://latent.foundation) — built with Rust and [Leptos](https://leptos.dev) (CSR/WASM), bundled by [Trunk](https://trunkrs.dev), deployed to Cloudflare Pages.
+Source code for [latent.foundation](https://latent.foundation) — built with Rust and [Leptos](https://leptos.dev) (CSR/WASM), bundled by [Trunk](https://github.com/trunk-rs/trunk), deployed to Cloudflare Pages.
 
 ## prerequisites
 
