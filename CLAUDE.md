@@ -45,7 +45,7 @@ latent. is typography-first, warm-neutral, and architecturally restrained. The g
 
 The `/latent-design` skill contains the full design system (color tokens, type scale, UI kits for site/ido/logos, font files, wordmark SVGs). Invoke it when building any UI.
 
-- Fonts: General Sans (body) + Geist Mono (code), self-hosted
+- Fonts: Geist (UI) + Geist Mono (code), self-hosted. Wordmark uses SVG assets.
 - Icons: Lucide via CDN — never hand-drawn icons or emoji
 - Dark theme: warm graphite; light theme: stone/paper
 
