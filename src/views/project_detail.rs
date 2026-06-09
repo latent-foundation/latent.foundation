@@ -6,7 +6,7 @@
 //! To populate a section, set the corresponding field in [`crate::data::PROJECTS`].
 
 use leptos::prelude::*;
-use leptos_router::hooks::use_params_map;
+use leptos_router::{components::A, hooks::use_params_map};
 
 use crate::data::PROJECTS;
 
@@ -35,9 +35,9 @@ pub fn ProjectDetail() -> impl IntoView {
                     Some(project) => {
                         view! {
                             <div class="project-detail">
-                                <a href="/projects" class="back-link">
+                                <A href="/projects" attr:class="back-link">
                                     "← projects"
-                                </a>
+                                </A>
 
                                 <div class="project-detail-hero">
                                     <div class="project-detail-splash">{project.splash_text}</div>

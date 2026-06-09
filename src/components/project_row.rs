@@ -4,10 +4,12 @@
 //! each project. When it is empty, the first character of `id` is used as a
 //! fallback so the layout never collapses to an empty cell.
 //!
-//! Each row is an `<a>` element linking to `/projects/{id}`. The link reset styles
+//! Each row is an `<A>` router link to `/projects/{id}`. Using the router component
+//! keeps navigation client-side (no full reload). The link reset styles
 //! (`color: inherit`, `text-decoration: none`) live in `.project-row` in site.css.
 
 use leptos::prelude::*;
+use leptos_router::components::A;
 
 use crate::data::Project;
 
@@ -27,7 +29,7 @@ pub fn ProjectRow(project: Project) -> impl IntoView {
     let href = format!("/projects/{}", project.id);
 
     view! {
-        <a class="project-row" href=href>
+        <A href=href attr:class="project-row">
             <div class="project-splash-text">{mark}</div>
             <div class="project-content">
                 <div class="project-header">
@@ -44,6 +46,6 @@ pub fn ProjectRow(project: Project) -> impl IntoView {
                 </div>
             </div>
             <span class="project-year">{project.year.to_string()}</span>
-        </a>
+        </A>
     }
 }

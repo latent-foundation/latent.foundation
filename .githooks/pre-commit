@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 set -eu
 
-# GitHub Desktop runs hooks in a minimal shell; PowerShell has the full Windows PATH.
-powershell.exe -NoProfile -NonInteractive -Command "just fmt-check"
+if command -v powershell.exe >/dev/null 2>&1; then
+    # GitHub Desktop on Windows uses a minimal shell PATH; PowerShell has the full PATH.
+    powershell.exe -NoProfile -NonInteractive -Command "just fmt-check"
+else
+    just fmt-check
+fi
