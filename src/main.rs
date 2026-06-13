@@ -7,7 +7,6 @@
 mod app;
 mod components;
 mod data;
-mod theme;
 mod views;
 
 use app::App;

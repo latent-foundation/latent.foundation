@@ -1,0 +1,3 @@
+[submodule "vendor/latent-design"]
+	path = vendor/latent-design
+	url = ../latent-design
