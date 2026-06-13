@@ -9,5 +9,5 @@ leptos = { version = "0.8.19", features = ["csr"] }
 leptos_router = { version = "0.8" }
 web-sys = { version = "0.3", features = ["Window", "Document", "Element", "Storage"] }
 js-sys = "0.3"
-# Shared latent. UI — path dep for local dev; swap to a git tag for production:
+# Shared latent. UI — pinned git dep; use a `path = "../latent-ui"` [patch] override for local dev
 latent-ui = { git = "https://github.com/latent-foundation/latent-ui", tag = "v0.1.0" }
