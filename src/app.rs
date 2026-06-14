@@ -11,9 +11,10 @@ use leptos_router::{
     path,
 };
 
+use latent_ui::theme::{initial_theme, setup_theme_effect};
+
 use crate::{
     components::{SiteFooter, SiteHeader},
-    theme::{initial_theme, setup_theme_effect},
     views::{About, Home, ProjectDetail, Projects},
 };
 

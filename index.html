@@ -23,9 +23,13 @@
       })();
     </script>
 
-    <link data-trunk rel="css" href="style/site.css" />
-    <link data-trunk rel="copy-dir" href="style/fonts" />
-    <link data-trunk rel="copy-dir" href="assets" />
+    <!-- Brand atoms + shared component styles from the latent-design submodule,
+         then this site's own page styles. Order matters for the cascade. -->
+    <link data-trunk rel="css" href="vendor/latent-design/tokens.css" />
+    <link data-trunk rel="css" href="vendor/latent-design/components.css" />
+    <link data-trunk rel="css" href="style/app.css" />
+    <link data-trunk rel="copy-dir" href="vendor/latent-design/fonts" />
+    <link data-trunk rel="copy-dir" href="vendor/latent-design/assets" />
     <link data-trunk rel="copy-file" href="_redirects" />
   </head>
   <body></body>

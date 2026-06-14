@@ -8,6 +8,7 @@
 //! The home link uses `exact=true` so it only activates on `/` and not on every
 //! route, since all routes share the `/` prefix.
 
+use latent_ui::ThemeToggle;
 use leptos::prelude::*;
 use leptos_router::{components::A, hooks::use_location};
 
@@ -58,13 +59,7 @@ pub fn SiteHeader() -> impl IntoView {
                     <A href="/about" attr:class="nav-link">
                         "about"
                     </A>
-                    <button
-                        class="theme-toggle"
-                        on:click=move |_| is_dark.update(|d| *d = !*d)
-                        title="toggle theme"
-                    >
-                        {move || if is_dark.get() { "☾" } else { "☀" }}
-                    </button>
+                    <ThemeToggle />
                 </nav>
             </div>
         </header>
