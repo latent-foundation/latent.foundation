@@ -38,3 +38,6 @@ target
 
 # General Sans — ITF Free Font License prohibits redistribution in public repos
 style/fonts/GeneralSans*
+
+# Claude Code Setup
+/.claude

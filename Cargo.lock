@@ -762,8 +762,8 @@ dependencies = [
 
 [[package]]
 name = "latent-ui"
-version = "0.1.0"
-source = "git+https://github.com/latent-foundation/latent-ui?tag=v0.1.0#fcd1308e3e756aa1e35edc659605b1d79f93326a"
+version = "0.2.0"
+source = "git+https://github.com/latent-foundation/latent-ui?tag=v0.2.0#4edef3a65569407495b329d7297ce8443ad67420"
 dependencies = [
  "leptos",
  "web-sys",

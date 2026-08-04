@@ -33,7 +33,8 @@ when building any UI.
 
 **Layers consumed:**
 - `vendor/latent-design` — git submodule: CSS tokens, components, fonts, SVGs (+ this canon).
-- `latent-ui` — Cargo git dep: `ThemeToggle`, `Tag`, `theme::{initial_theme, setup_theme_effect}`.
+- `latent-ui` — Cargo git dep: `ThemeToggle`, `Tag`, `Icon`, `platform::is_mac`,
+  `theme::{initial_theme, setup_theme_effect}`.
 
 **Structure:**
 ```
@@ -71,7 +72,16 @@ trunk build --release   # production build → dist/
 ```sh
 git submodule update --init --recursive   # populate vendor/latent-design
 git config core.hooksPath .githooks       # activate pre-commit format gate
+
+# Wire the /latent-design skill — symlink, so it tracks the submodule automatically.
+# `.claude/` is gitignored, so this is machine-local: every clone repeats it.
+mkdir -p .claude/skills
+ln -s ../../vendor/latent-design .claude/skills/latent-design
 ```
+
+Run the symlink step **after** the submodule init above, or it dangles. On Windows use
+`New-Item -ItemType SymbolicLink` (needs Developer Mode) — see
+[bootstrap-new-app.md](vendor/latent-design/docs/bootstrap-new-app.md).
 
 ## CI
 
