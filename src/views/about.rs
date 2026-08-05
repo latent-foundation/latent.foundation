@@ -10,10 +10,14 @@
 use js_sys::Date;
 use leptos::prelude::*;
 
+use crate::title::use_title;
+
 /// Colophon page: monogram, bio, "now" status bar, facts grid, and external links.
 #[allow(non_snake_case)]
 #[component]
 pub fn About() -> impl IntoView {
+    use_title(|| "About".to_string());
+
     // Compute full years of professional experience since July 2024.
     // get_month() is 0-indexed in JS, so +1 to normalise to 1–12.
     let now = Date::new_0();
@@ -61,11 +65,11 @@ pub fn About() -> impl IntoView {
                 <div class="now-bar">
                     <span class="now-label">"now"</span>
                     <span class="now-text">
-                        "Finishing a Master's in Computer Science and building "
+                        "Fulltime and fullstack software engineer @ BNY. Building "
                         <span class="text-primary">"ido"</span> " and "
                         <span class="text-primary">"logos"</span>
                         " in the open. Writing when something is worth writing down. "
-                        "Fulltime and fullstack software engineer @ BNY."
+
                     </span>
                 </div>
                 <div class="facts-grid">

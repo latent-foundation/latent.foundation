@@ -26,7 +26,12 @@ pub fn ProjectRow(project: Project) -> impl IntoView {
         project.splash_text.to_string()
     };
 
-    let href = format!("/projects/{}", project.id);
+    // A project with its own product page is linked directly to it; the rest go to the
+    // generic detail page. See `Project::page`.
+    let href = project
+        .page
+        .map(str::to_string)
+        .unwrap_or_else(|| format!("/projects/{}", project.id));
 
     view! {
         <A href=href attr:class="project-row">

@@ -43,17 +43,45 @@ and shared Rust behavior live in two sibling repos:
 | App | `latent.foundation` *(this repo)* | — | pages, routing, layout |
 
 ```
+build.rs               renders content/**/*.md → HTML at build time
+content/
+  log/                 written entries, one markdown file each
 src/
   main.rs              entry point — mounts <App/>
   app.rs               root component, router, theme bootstrap
+  content.rs           Entry/Heading types + the generated content arrays
   data.rs              project data
+  title.rs             per-route document.title
   components/          header, footer, project_row
-  views/               home, projects, project_detail, about
+  views/               home, projects, project_detail, log, log_entry, about
 style/
   app.css              page/layout styles only — THIS repo's only CSS
 vendor/latent-design/  submodule: tokens.css, components.css, fonts/, assets/
 index.html             Trunk entry — wires CSS cascade + copies fonts/assets
 ```
+
+## writing
+
+Entries live in `content/log/` as markdown with `+++`-fenced TOML frontmatter, named
+`YYYY-MM-DD-slug.md`:
+
+```markdown
++++
+title   = "Markdown at build time"
+date    = "2026-08-05"
+summary = "One plain-text paragraph, shown in the index."
+tags    = ["rust", "leptos"]
+draft   = false
++++
+
+Body.
+```
+
+`build.rs` renders them to HTML and compiles them in, so publishing is just a rebuild —
+and a malformed entry fails the build rather than the browser. `draft = true` entries show
+under `trunk serve` and are dropped from release builds. The filename's date prefix keeps
+the directory ordered without appearing in the URL, so an entry can be re-dated without
+breaking its link. Full reasoning: [`docs/log-section.md`](docs/log-section.md).
 
 `style/app.css` is the only stylesheet that belongs here. Tokens and component styles come
 from the submodule and load first (`tokens.css` → `components.css` → `app.css` — the cascade

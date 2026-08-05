@@ -11,3 +11,10 @@ web-sys = { version = "0.3", features = ["Window", "Document", "Element", "Stora
 js-sys = "0.3"
 # Shared latent. UI — pinned git dep; use a `path = "../latent-ui"` [patch] override for local dev
 latent-ui = { git = "https://github.com/latent-foundation/latent-ui", tag = "v0.2.0" }
+
+# Host-only: `build.rs` renders `content/**/*.md` to HTML at build time, so neither the
+# parser nor the TOML reader is compiled into the WASM bundle. pulldown-cmark is pinned to
+# the same 0.13 line ido uses, so the two markdown paths can't drift apart.
+[build-dependencies]
+pulldown-cmark = { version = "0.13", default-features = false, features = ["html"] }
+toml = "1"

@@ -8,7 +8,7 @@
 use leptos::prelude::*;
 use leptos_router::{components::A, hooks::use_params_map};
 
-use crate::data::PROJECTS;
+use crate::{data::PROJECTS, title::use_title};
 
 /// Project detail page: full description, rationale, links, and metadata.
 ///
@@ -18,6 +18,15 @@ use crate::data::PROJECTS;
 #[component]
 pub fn ProjectDetail() -> impl IntoView {
     let params = use_params_map();
+
+    use_title(move || {
+        let id = params.with(|p| p.get("id").unwrap_or_default().to_string());
+        PROJECTS
+            .iter()
+            .find(|p| p.id == id.as_str())
+            .map(|p| p.id.to_string())
+            .unwrap_or_else(|| "Projects".to_string())
+    });
 
     view! {
         <div class="container">
@@ -62,6 +71,16 @@ pub fn ProjectDetail() -> impl IntoView {
                                 <div class="project-detail-divider"></div>
 
                                 <p class="project-detail-lead">{project.description}</p>
+
+                                {project
+                                    .page
+                                    .map(|href| {
+                                        view! {
+                                            <A href=href attr:class="project-detail-page-link">
+                                                {format!("full {} page →", project.id)}
+                                            </A>
+                                        }
+                                    })}
 
                                 {project
                                     .rationale

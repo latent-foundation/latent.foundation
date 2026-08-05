@@ -56,6 +56,9 @@ pub fn SiteHeader() -> impl IntoView {
                     <A href="/projects" attr:class="nav-link">
                         "projects"
                     </A>
+                    <A href="/log" attr:class="nav-link">
+                        "log"
+                    </A>
                     <A href="/about" attr:class="nav-link">
                         "about"
                     </A>
