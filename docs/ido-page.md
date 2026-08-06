@@ -131,7 +131,6 @@ Grounded in ido's own docs — sources noted below, and the page must not outrun
 | `shipped` | the workspace | notes, wiki, tasks, goals, calendar, table, tabs + split, `Ctrl+K` search, undo, images, math | ido `CLAUDE.md` §Current state |
 | `next` | **MCP server** | extract the store into a tauri-free `ido-store` crate, then an `rmcp` + stdio binary with seven read-only tools — any MCP client can read and search the well without ido running | `docs/mcp-server.md` P0–P1 |
 | `planned` | **semantic search** | local embeddings via candle (pure Rust, no ONNX runtime to bundle), brute-force cosine fused with the existing lexical scan; the same index powers in-app `Ctrl+K` | `docs/mcp-server.md` P2–P3 |
-| `planned` | **on-device AI** | a local model answering over your own notes — private, offline, reusing the candle groundwork the index already lays down | ido `CLAUDE.md` §What's next |
 | `exploring` | **sync** | self-hosted first, optional cloud, end-to-end encrypted — local-first stays the default, sync is opt-in | ido `CLAUDE.md` §What's next |
 | `exploring` | **mobile** | reading and capture on a phone against the same well | direction, not yet in ido's docs |
 

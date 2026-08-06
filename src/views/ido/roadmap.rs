@@ -40,16 +40,16 @@ impl Horizon {
         }
     }
 
-    /// Lucide glyph from `latent-ui`'s shared table.
+    /// Lucide glyph from `latent-ui`'s shared table, drawn inside the spine node.
     ///
-    /// Shipped work gets a filled-feeling check; everything else gets a hollow or
-    /// directional mark, so built and unbuilt are distinguishable at a glance and not
-    /// only by reading the label.
+    /// Read top to bottom they describe a gradient of certainty: done, in motion, not
+    /// started, unknown. `minus` rather than a second square for `Planned` — the node is
+    /// already a square, and a square inside a square reads as a mistake.
     fn icon(self) -> &'static str {
         match self {
             Horizon::Shipped => "square-check",
             Horizon::Next => "chevron-right",
-            Horizon::Planned => "square",
+            Horizon::Planned => "minus",
             Horizon::Exploring => "circle-help",
         }
     }
@@ -61,6 +61,20 @@ impl Horizon {
             Horizon::Next => "next",
             Horizon::Planned => "planned",
             Horizon::Exploring => "exploring",
+        }
+    }
+
+    /// Whether this arc describes work that does not exist yet.
+    ///
+    /// Drives the spine's solid→dashed transition — the one place the page states where
+    /// reality ends. That decision lives here, beside the variants, rather than as a list
+    /// of class names in a CSS selector: the match is written out in full precisely so
+    /// that adding a `Horizon` fails to compile until someone decides which side of the
+    /// line it falls on. A `_ =>` arm would defeat the entire point.
+    fn projected(self) -> bool {
+        match self {
+            Horizon::Shipped | Horizon::Next => false,
+            Horizon::Planned | Horizon::Exploring => true,
         }
     }
 }
@@ -112,14 +126,6 @@ pub static ARCS: &[Arc] = &[
         ],
     },
     Arc {
-        horizon: Horizon::Planned,
-        title: "on-device AI",
-        body: "A model that answers over your own notes, running locally. The groundwork \
-               the search index lays down — model cache, device setup — is what makes this \
-               a smaller step than it sounds.",
-        points: &["private by construction: offline, on your machine, over your files"],
-    },
-    Arc {
         horizon: Horizon::Exploring,
         title: "sync",
         body: "Self-hosted first, cloud optional, end-to-end encrypted. Local-first stays \
@@ -146,7 +152,12 @@ pub static NON_GOALS: &[&str] = &[
     "notes are not [[link]] targets; that namespace belongs to the wiki",
 ];
 
-/// The roadmap timeline.
+/// The roadmap, drawn as a timeline.
+///
+/// Each arc is a node on a continuous spine. The connector below a node is solid where
+/// the work is real — shipped, or actively being built — and dashed from there on, so the
+/// boundary between what exists and what is projected is visible without reading a word
+/// of it. That transition is the reason this is a timeline rather than a list.
 #[allow(non_snake_case)]
 #[component]
 pub fn Roadmap() -> impl IntoView {
@@ -156,12 +167,18 @@ pub fn Roadmap() -> impl IntoView {
                 .iter()
                 .map(|arc| {
                     view! {
-                        <div class=format!("ido-arc {}", arc.horizon.class())>
-                            <div class="ido-arc-marker">
-                                <Icon name=arc.horizon.icon() size=14 />
-                                <span class="ido-arc-horizon">{arc.horizon.label()}</span>
+                        <div class=format!(
+                            "ido-arc {}{}",
+                            arc.horizon.class(),
+                            if arc.horizon.projected() { " projected" } else { "" },
+                        )>
+                            <div class="ido-arc-spine">
+                                <span class="ido-arc-node">
+                                    <Icon name=arc.horizon.icon() size=13 />
+                                </span>
                             </div>
                             <div class="ido-arc-body">
+                                <span class="ido-arc-horizon">{arc.horizon.label()}</span>
                                 <h3 class="ido-arc-title">{arc.title}</h3>
                                 <p class="ido-arc-text">{arc.body}</p>
                                 {(!arc.points.is_empty())

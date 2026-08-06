@@ -65,7 +65,7 @@ pub fn About() -> impl IntoView {
                 <div class="now-bar">
                     <span class="now-label">"now"</span>
                     <span class="now-text">
-                        "Fulltime and fullstack software engineer @ BNY. Building "
+                        "Fullstack software developer @ BNY. Building "
                         <span class="text-primary">"ido"</span> " and "
                         <span class="text-primary">"logos"</span>
                         " in the open. Writing when something is worth writing down. "
