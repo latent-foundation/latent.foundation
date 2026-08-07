@@ -3,7 +3,7 @@ title   = "Markdown at build time"
 date    = "2026-08-05"
 summary = "This site compiles its writing into the binary instead of parsing it in the browser. ido does the opposite, for a good reason."
 tags    = ["rust", "leptos", "ido"]
-draft   = false
+draft   = true
 +++
 
 This site is a Leptos app compiled to WebAssembly. There is no server and no database —

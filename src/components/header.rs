@@ -7,10 +7,16 @@
 //!
 //! The home link uses `exact=true` so it only activates on `/` and not on every
 //! route, since all routes share the `/` prefix.
+//!
+//! The `log` link is conditional on there being something to read — see the note at the
+//! call site. `/log` itself stays routable either way, so an existing bookmark or inbound
+//! link still resolves rather than 404ing.
 
 use latent_ui::ThemeToggle;
 use leptos::prelude::*;
 use leptos_router::{components::A, hooks::use_location};
+
+use crate::content::LOG;
 
 /// Persistent header rendered above every page.
 ///
@@ -56,9 +62,18 @@ pub fn SiteHeader() -> impl IntoView {
                     <A href="/projects" attr:class="nav-link">
                         "projects"
                     </A>
-                    <A href="/log" attr:class="nav-link">
-                        "log"
-                    </A>
+                    // Hidden while the log has no entries: a nav link that leads to an
+                    // empty page is a promise the site can't keep. Drafts count in debug
+                    // builds, so the link stays available while writing and only
+                    // disappears from a release with nothing published.
+                    {(!LOG.is_empty())
+                        .then(|| {
+                            view! {
+                                <A href="/log" attr:class="nav-link">
+                                    "log"
+                                </A>
+                            }
+                        })}
                     <A href="/about" attr:class="nav-link">
                         "about"
                     </A>
