@@ -93,8 +93,7 @@ pub static ARCS: &[Arc] = &[
     Arc {
         horizon: Horizon::Shipped,
         title: "the workspace",
-        body: "Notes, wiki and tasks, in one window, over a folder of plain markdown. \
-               This is what ido is today — not a prototype.",
+        body: "Notes, wiki and tasks, in one window, over a folder of plain markdown.",
         points: &[
             "three editor modes: source, live block-preview, reading",
             "kanban board with goals, recurrence, calendar and table views",
@@ -107,8 +106,7 @@ pub static ARCS: &[Arc] = &[
         title: "an MCP server over the store",
         body: "The store moves into a Tauri-free crate, and a separate binary exposes it \
                over MCP with read-only tools. Any MCP client can then read and search a \
-               well — without ido running, and without a second copy of how a task file \
-               is parsed.",
+               well.",
         points: &[
             "read-only first; write tools are a later, opt-in phase",
             "one implementation of the store, shared with the app",
@@ -121,7 +119,7 @@ pub static ARCS: &[Arc] = &[
                that word. Local embeddings, brute-force cosine over the vectors, fused \
                with the lexical scan that already exists.",
         points: &[
-            "runs on-device — no embedding API, no cloud index, nothing leaves the machine",
+            "runs on-device: no embedding API, no cloud index, nothing leaves the machine",
             "the same index powers in-app search, which is the honest test of whether it works",
         ],
     },
@@ -136,7 +134,7 @@ pub static ARCS: &[Arc] = &[
         horizon: Horizon::Exploring,
         title: "mobile",
         body: "Reading and capture on a phone, against the same well. A direction rather \
-               than a commitment — there is no design for it yet.",
+               than a commitment, there is no design for it yet.",
         points: &[],
     },
 ];
@@ -148,8 +146,7 @@ pub static ARCS: &[Arc] = &[
 pub static NON_GOALS: &[&str] = &[
     "no cloud account, and no cloud requirement",
     "no telemetry, ever",
-    "not a productivity dashboard — no streaks, no scores",
-    "notes are not [[link]] targets; that namespace belongs to the wiki",
+    "notes are not [[link]] targets. That namespace belongs to the wiki",
 ];
 
 /// The roadmap, drawn as a timeline.

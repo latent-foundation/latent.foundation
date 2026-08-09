@@ -59,7 +59,7 @@ fn IdoHero() -> impl IntoView {
             <div class="ido-hero-mark">"井戸"</div>
             <div class="ido-hero-body">
                 <h1 class="ido-hero-name">"ido"</h1>
-                <p class="ido-hero-tagline">"a quiet well for thought"</p>
+                <p class="ido-hero-tagline">"a local-first knowledge system"</p>
                 <div class="ido-hero-meta">
                     <span>"ACTIVE"</span>
                     <span class="ido-hero-meta-sep">"·"</span>
@@ -71,9 +71,9 @@ fn IdoHero() -> impl IntoView {
         </header>
 
         <p class="ido-lede">
-            "A local-first knowledge system. A " <strong>"well"</strong>
-            " is any folder you pick; inside it live notes, a linked wiki, and a task board
-            with goals — all as plain markdown files on your own machine. Durable, portable,
+            "A " <strong>"well"</strong>
+            " is any folder you pick. Inside it live notes, a linked wiki, and a task board
+            with goals. All as plain markdown files on your own machine. Durable, portable,
             yours: no account, no sync dependency, no latency."
         </p>
 
@@ -130,13 +130,13 @@ fn IdoWell() -> impl IntoView {
                 <div class="ido-split-prose">
                     <p class="ido-body">
                         "There is no database and no proprietary format. Point ido at a folder
-                        and it scaffolds three directories of markdown files — the same files
+                        and it scaffolds three directories of markdown files, same files
                         you can open in any editor, grep, or commit to git."
                     </p>
                     <p class="ido-body">
                         "The only ido-specific directory is " <code>".ido/"</code>
                         ", which holds configuration and cache. Delete it and nothing of yours
-                        is lost; it rebuilds. That is the whole guarantee: "
+                        is lost, it gets rebuild. That is the whole guarantee: "
                         <strong>"the app can go away and your notes are still notes."</strong>
                     </p>
                 </div>
@@ -176,7 +176,7 @@ fn IdoFeatures() -> impl IntoView {
                     <h3 class="ido-feature-title">"links that survive being moved"</h3>
                     <p class="ido-body">
                         "Wiki pages are addressed by slug, and a slug is unique across the
-                        whole section — so folders are organisation, never identity. Move a
+                        whole section. Folders are organisation, never identity. Move a
                         page and every link to it still resolves. Rename one and inbound links
                         are rewritten across notes, wiki pages, and task bodies alike."
                     </p>
@@ -202,7 +202,7 @@ fn IdoFeatures() -> impl IntoView {
                     <p class="ido-body">
                         <strong>"Goals"</strong>
                         " group tasks and show derived progress. The same tasks render as a
-                        calendar or a sortable table — the board is a view, not the storage."
+                        calendar or a sortable table. The board is a view, not the storage."
                     </p>
                 </div>
                 <BoardMini />
@@ -213,7 +213,7 @@ fn IdoFeatures() -> impl IntoView {
                     <h3 class="ido-feature-title">"a workspace, not a page viewer"</h3>
                     <p class="ido-body">
                         "Tabs keep several entries open and are restored when you reopen a
-                        well; a single click previews, an edit pins. Split the editor into two
+                        well. A single click previews, an edit pins. Split the editor into two
                         panes and drag tabs between them. " <code>"Ctrl+K"</code>
                         " searches every section at once, ranked, with matches highlighted."
                     </p>
@@ -233,7 +233,7 @@ fn IdoRoadmapSection() -> impl IntoView {
         <section class="ido-section">
             <h2 class="ido-section-label">"where it's going"</h2>
             <p class="ido-body ido-section-lede">
-                "The workspace above is built. What follows is ordered by how settled it is —
+                "The workspace above is built. What follows is ordered by how settled it is: 
                 specced and started, specced and waiting, or simply a direction."
             </p>
 
@@ -262,11 +262,6 @@ fn IdoPrinciples() -> impl IntoView {
         (
             "plain files",
             "Markdown in ordinary folders. Readable without ido, and readable in ten years.",
-        ),
-        (
-            "calm",
-            "No streaks, no scores, no notifications competing for attention. A tool you \
-             return to, not one that pages you.",
         ),
         (
             "durable",
@@ -302,14 +297,14 @@ fn IdoClosing() -> impl IntoView {
     view! {
         <section class="ido-section ido-closing">
             <p class="ido-body">
-                "ido is in active development and has not been released. It is built in the
+                "ido is in active development. It is built in the
                 open and used daily by the person building it, which is the only reason the
                 feature list above is honest about what works."
             </p>
             <div class="ido-closing-links">
-                <A href="/log" attr:class="ido-link-primary">
-                    "writing about ido →"
-                </A>
+                // <A href="/log" attr:class="ido-link-primary">
+                //     "writing about ido →"
+                // </A>
                 <A href="/projects/ido" attr:class="ido-link-secondary">
                     "archive entry"
                 </A>
