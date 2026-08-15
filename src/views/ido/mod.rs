@@ -233,7 +233,7 @@ fn IdoRoadmapSection() -> impl IntoView {
         <section class="ido-section">
             <h2 class="ido-section-label">"where it's going"</h2>
             <p class="ido-body ido-section-lede">
-                "The workspace above is built. What follows is ordered by how settled it is: 
+                "The workspace above is built. What follows is ordered by how settled it is:
                 specced and started, specced and waiting, or simply a direction."
             </p>
 
@@ -303,7 +303,7 @@ fn IdoClosing() -> impl IntoView {
             </p>
             <div class="ido-closing-links">
                 // <A href="/log" attr:class="ido-link-primary">
-                //     "writing about ido →"
+                // "writing about ido →"
                 // </A>
                 <A href="/projects/ido" attr:class="ido-link-secondary">
                     "archive entry"
