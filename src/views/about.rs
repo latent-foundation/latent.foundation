@@ -25,7 +25,7 @@ pub fn About() -> impl IntoView {
     let current_month = now.get_month() as i32 + 1;
     let elapsed_months = (current_year - 2024) * 12 + (current_month - 7);
     let years = (elapsed_months / 12).max(0) as u32;
-    let experience = format!("{}+ years as a software engineer", years);
+    let experience = format!("{}+ years of as a software developer", years);
 
     let facts: Vec<(&str, String)> = vec![
         (
@@ -59,7 +59,7 @@ pub fn About() -> impl IntoView {
                     and reasoned about rather than rushed out."
                 </p>
                 <p class="about-bio">
-                    "I'd rather ship one carefully-reasoned system than ten quick ones. Most of what I make
+                    "I'd rather ship one carefully thought out system than ten quick ones. Most of what I make
                     is for the long term, tools I expect to still be using in five years."
                 </p>
                 <div class="now-bar">
