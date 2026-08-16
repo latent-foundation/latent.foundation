@@ -12,10 +12,11 @@ fmt-check:
     cargo fmt --all --check
     leptosfmt --check "src/**/*.rs"
 
-# Run normal Rust checks
+# Run normal Rust checks (clippy subsumes `cargo check`).
+# Targets wasm32 — the thing we actually ship. `build.rs` is still linted, since cargo
+# always compiles build scripts for the host.
 check:
-    cargo check --workspace
-    cargo clippy --workspace --all-targets -- -D warnings
+    cargo clippy --workspace --all-targets --target wasm32-unknown-unknown -- -D warnings
 
 # Full local validation before pushing
 verify:

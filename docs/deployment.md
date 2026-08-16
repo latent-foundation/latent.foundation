@@ -87,7 +87,7 @@ The `GITHUB_TOKEN` secret is passed to `pages-action` so deployment statuses app
 
 | Workflow | Trigger | What it does |
 |----------|---------|-------------|
-| `ci.yml` | push to `main`, all PRs | `just verify` (fmt-check + clippy) |
+| `ci.yml` | push to `main`, all PRs | `just verify` (fmt-check + clippy on `wasm32`) |
 | `deploy.yml` | push to `main` only | build WASM + deploy to CF Pages |
 
 PRs only run CI — they do not deploy.
