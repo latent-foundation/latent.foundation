@@ -10,10 +10,14 @@
 use js_sys::Date;
 use leptos::prelude::*;
 
+use crate::title::use_title;
+
 /// Colophon page: monogram, bio, "now" status bar, facts grid, and external links.
 #[allow(non_snake_case)]
 #[component]
 pub fn About() -> impl IntoView {
+    use_title(|| "About".to_string());
+
     // Compute full years of professional experience since July 2024.
     // get_month() is 0-indexed in JS, so +1 to normalise to 1–12.
     let now = Date::new_0();
@@ -21,7 +25,7 @@ pub fn About() -> impl IntoView {
     let current_month = now.get_month() as i32 + 1;
     let elapsed_months = (current_year - 2024) * 12 + (current_month - 7);
     let years = (elapsed_months / 12).max(0) as u32;
-    let experience = format!("{}+ years as a software engineer", years);
+    let experience = format!("{}+ years of as a software developer", years);
 
     let facts: Vec<(&str, String)> = vec![
         (
@@ -55,17 +59,17 @@ pub fn About() -> impl IntoView {
                     and reasoned about rather than rushed out."
                 </p>
                 <p class="about-bio">
-                    "I'd rather ship one carefully-reasoned system than ten quick ones. Most of what I make
+                    "I'd rather ship one carefully thought out system than ten quick ones. Most of what I make
                     is for the long term, tools I expect to still be using in five years."
                 </p>
                 <div class="now-bar">
                     <span class="now-label">"now"</span>
                     <span class="now-text">
-                        "Finishing a Master's in Computer Science and building "
+                        "Fullstack software developer @ BNY. Building "
                         <span class="text-primary">"ido"</span> " and "
                         <span class="text-primary">"logos"</span>
                         " in the open. Writing when something is worth writing down. "
-                        "Fulltime and fullstack software engineer @ BNY."
+
                     </span>
                 </div>
                 <div class="facts-grid">

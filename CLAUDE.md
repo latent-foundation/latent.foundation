@@ -33,20 +33,41 @@ when building any UI.
 
 **Layers consumed:**
 - `vendor/latent-design` — git submodule: CSS tokens, components, fonts, SVGs (+ this canon).
-- `latent-ui` — Cargo git dep: `ThemeToggle`, `Tag`, `theme::{initial_theme, setup_theme_effect}`.
+- `latent-ui` — Cargo git dep: `ThemeToggle`, `Tag`, `Icon`, `platform::is_mac`,
+  `theme::{initial_theme, setup_theme_effect}`.
 
 **Structure:**
 ```
+build.rs             renders content/**/*.md → HTML at build time
+content/log/         written entries, one markdown file each
 src/
   main.rs            entry — mounts <App/>
   app.rs             root component, router, theme bootstrap
+  content.rs         Entry/Heading types + the build-generated arrays
   data.rs            project data
+  title.rs           per-route document.title
   components/        header, footer, project_row
-  views/             home, projects, project_detail, about
+  views/             home, projects, project_detail, log, log_entry, about
+    ido/             the /ido product page (mod, roadmap, diagrams, miniatures)
 style/app.css        page/layout styles — this repo's ONLY stylesheet
 vendor/latent-design submodule (CSS, fonts, assets, docs/)
 index.html           Trunk entry — CSS cascade + copy-dir
 ```
+
+**Content:** markdown in `content/log/` (`YYYY-MM-DD-slug.md`, `+++`-fenced TOML
+frontmatter) is rendered to HTML by `build.rs` and compiled in — the parser never reaches
+the WASM bundle and a malformed entry fails the build, not the browser. Note this is the
+*opposite* of ido, which parses in the browser because it renders the user's files live;
+both use the same pinned `pulldown-cmark`. Adding a collection (e.g. ido guides) is one
+line in `build.rs`'s `COLLECTIONS` plus a route. Design notes:
+[docs/log-section.md](docs/log-section.md), [docs/ido-page.md](docs/ido-page.md).
+
+**The `/ido` page:** every claim on it must be traceable to ido's own repo (`README.md`,
+`CLAUDE.md`, `docs/mcp-server.md`) — nothing shipped in the future tense, nothing unshipped
+in the present, and no version numbers (a version on a public roadmap reads as a date).
+The miniatures in `views/ido/miniatures.rs` are schematic illustrations, not screenshots:
+keep them `aria-hidden` with the prose carrying the information, and never let one imply a
+feature ido lacks. Which projects get a bespoke page is data — set `Project::page`.
 
 **App-specific rules:**
 - `style/app.css` is the only CSS that belongs here. Tokens/components come from the
@@ -71,7 +92,16 @@ trunk build --release   # production build → dist/
 ```sh
 git submodule update --init --recursive   # populate vendor/latent-design
 git config core.hooksPath .githooks       # activate pre-commit format gate
+
+# Wire the /latent-design skill — symlink, so it tracks the submodule automatically.
+# `.claude/` is gitignored, so this is machine-local: every clone repeats it.
+mkdir -p .claude/skills
+ln -s ../../vendor/latent-design .claude/skills/latent-design
 ```
+
+Run the symlink step **after** the submodule init above, or it dangles. On Windows use
+`New-Item -ItemType SymbolicLink` (needs Developer Mode) — see
+[bootstrap-new-app.md](vendor/latent-design/docs/bootstrap-new-app.md).
 
 ## CI
 

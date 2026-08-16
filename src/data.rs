@@ -67,6 +67,13 @@ pub struct Project {
     pub rationale: Option<&'static str>,
     /// External links as (label, URL) pairs. Empty until finalised.
     pub links: &'static [(&'static str, &'static str)],
+    /// Route of a bespoke product page for this project, if it has one.
+    ///
+    /// Set this and the archive row links straight there instead of to
+    /// `/projects/{id}`, and the detail page grows a link onward — so a project
+    /// graduates from "archive entry" to "has its own page" by setting one field,
+    /// with no branching in any view.
+    pub page: Option<&'static str>,
 }
 
 /// Complete list of projects, newest first.
@@ -96,6 +103,7 @@ pub static PROJECTS: &[Project] = &[
         with an emphasis on ownership, durability, and calm organization.",
         ),
         links: &[],
+        page: Some("/ido"),
     },
     Project {
         id: "logos",
@@ -118,6 +126,7 @@ pub static PROJECTS: &[Project] = &[
         testing assumptions, measuring risk, and deciding only when a strategy has earned that decision.",
         ),
         links: &[],
+        page: None,
     },
     Project {
         id: "proteus",
@@ -141,5 +150,6 @@ pub static PROJECTS: &[Project] = &[
             experimentation, and synthetic-to-real evaluation process.",
         ),
         links: &[("GitHub", "https://github.com/Spiryd/proteus")],
+        page: None,
     },
 ];

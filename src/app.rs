@@ -15,7 +15,7 @@ use latent_ui::theme::{initial_theme, setup_theme_effect};
 
 use crate::{
     components::{SiteFooter, SiteHeader},
-    views::{About, Home, ProjectDetail, Projects},
+    views::{About, Home, IdoPage, Log, LogEntry, ProjectDetail, Projects},
 };
 
 /// Root component: initialises theme context and declares the client-side routes.
@@ -24,7 +24,14 @@ use crate::{
 /// - `/`              → [`Home`]
 /// - `/projects`      → [`Projects`]
 /// - `/projects/:id`  → [`ProjectDetail`]
+/// - `/log`           → [`Log`]
+/// - `/log/:slug`     → [`LogEntry`]
 /// - `/about`         → [`About`]
+///
+/// Sibling routes are matched **in declaration order — first match wins**, not by
+/// specificity (`leptos_router`'s `matching/nested/tuples.rs`). Nothing here overlaps,
+/// but a static path added alongside an existing `:param` sibling must be declared
+/// *before* it or the param will swallow it.
 ///
 /// The `fallback` renders a minimal "page not found" message for any unmatched
 /// path rather than silently showing a blank page.
@@ -51,6 +58,9 @@ pub fn App() -> impl IntoView {
                     <Route path=path!("") view=Home />
                     <Route path=path!("projects") view=Projects />
                     <Route path=path!("projects/:id") view=ProjectDetail />
+                    <Route path=path!("log") view=Log />
+                    <Route path=path!("log/:slug") view=LogEntry />
+                    <Route path=path!("ido") view=IdoPage />
                     <Route path=path!("about") view=About />
                 </Routes>
             </main>

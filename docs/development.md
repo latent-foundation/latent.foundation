@@ -31,7 +31,7 @@ git config core.hooksPath .githooks
 trunk serve          # start dev server at http://localhost:8080 (hot-reload)
 just fmt             # format all Rust + Leptos code
 just fmt-check       # check formatting without modifying (runs in CI + pre-commit)
-just check           # cargo check + clippy -D warnings
+just check           # clippy -D warnings, against wasm32-unknown-unknown
 just verify          # fmt-check + check — the full CI gate
 ```
 

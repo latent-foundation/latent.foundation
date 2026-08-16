@@ -10,6 +10,7 @@ use leptos::prelude::*;
 use crate::{
     components::ProjectRow,
     data::{PROJECTS, Status},
+    title::use_title,
 };
 
 /// Full project archive with ALL / ACTIVE / RESEARCH / ARCHIVED filter bar.
@@ -20,6 +21,8 @@ use crate::{
 #[allow(non_snake_case)]
 #[component]
 pub fn Projects() -> impl IntoView {
+    use_title(|| "Projects".to_string());
+
     let filter = RwSignal::new(None::<Status>);
 
     let shown = Memo::new(move |_| {

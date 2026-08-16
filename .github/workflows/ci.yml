@@ -5,6 +5,11 @@ on:
     branches: [main]
   pull_request:
 
+# A newer push to the same ref supersedes the run in flight.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   verify:
     name: Verify
@@ -19,16 +24,18 @@ jobs:
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
         with:
+          targets: wasm32-unknown-unknown
           components: rustfmt, clippy
+
+      # Prebuilt binaries — before rust-cache, so they stay out of the dep cache.
+      # leptosfmt is pinned so a new release can't fail CI on unchanged code.
+      - name: Install just and leptosfmt
+        uses: taiki-e/install-action@v2
+        with:
+          tool: just,leptosfmt@0.1.33
 
       - name: Cache Rust dependencies
         uses: Swatinem/rust-cache@v2
-
-      - name: Install just
-        run: cargo install just --locked
-
-      - name: Install leptosfmt
-        run: cargo install leptosfmt --locked
 
       - name: Run verification
         run: just verify
