@@ -14,17 +14,22 @@ Rust behavior come from two sibling repos — see the canon below.
 
 ## Canon — read these first
 
-Shared ecosystem knowledge is **not duplicated here**. It lives in `latent-design` and is
-vendored into this repo at `vendor/latent-design/docs/` (populated after
-`git submodule update --init --recursive`):
+Shared ecosystem knowledge is **not duplicated here**. It lives in the **latent well** —
+an ido well that is the single authoritative home for latent. docs, readable in ido or
+over its MCP server (the former `vendor/latent-design/docs/` paths hold pointer stubs):
 
-| Doc | What it covers |
+| Well wiki page | What it covers |
 |---|---|
-| [ecosystem.md](vendor/latent-design/docs/ecosystem.md) | The 3-layer architecture, sharing model, CSS cascade, anti-FOUC, dependency pinning |
-| [conventions.md](vendor/latent-design/docs/conventions.md) | Rust/Leptos/Trunk conventions, formatting, signals, theme, CI |
-| [bootstrap-new-app.md](vendor/latent-design/docs/bootstrap-new-app.md) | Standing up a new latent. app |
-| [glossary.md](vendor/latent-design/docs/glossary.md) | What latent. / ido / logos / each layer mean |
-| [knowledge-architecture.md](vendor/latent-design/docs/knowledge-architecture.md) | Knowledge-centralization + MCP roadmap |
+| `ecosystem` | The 3-layer architecture, sharing model, CSS cascade, anti-FOUC, dependency pinning |
+| `conventions` | Rust/Leptos/Trunk conventions, formatting, signals, theme, CI |
+| `bootstrap-new-app` | Standing up a new latent. app |
+| `glossary` | What latent. / ido / logos / each layer mean |
+| `knowledge-architecture` | Knowledge-centralization + MCP plan |
+
+This repo's own design docs moved there too, as the `website/` wiki group:
+`website-architecture`, `website-deployment`, `website-development`,
+`website-log-section`, `website-ido-page`. ("website", not "foundation" —
+latent.foundation is the domain and repo name, not the product's name.)
 
 The `/latent-design` skill carries the full design system (color, type, assets). Invoke it
 when building any UI.
@@ -60,10 +65,10 @@ the WASM bundle and a malformed entry fails the build, not the browser. Note thi
 *opposite* of ido, which parses in the browser because it renders the user's files live;
 both use the same pinned `pulldown-cmark`. Adding a collection (e.g. ido guides) is one
 line in `build.rs`'s `COLLECTIONS` plus a route. Design notes:
-[docs/log-section.md](docs/log-section.md), [docs/ido-page.md](docs/ido-page.md).
+the well's `website-log-section` and `website-ido-page` pages.
 
-**The `/ido` page:** every claim on it must be traceable to ido's own repo (`README.md`,
-`CLAUDE.md`, `docs/mcp-server.md`) — nothing shipped in the future tense, nothing unshipped
+**The `/ido` page:** every claim on it must be traceable to ido's own docs (`README.md`,
+`CLAUDE.md`, the well's `ido-mcp-design` page) — nothing shipped in the future tense, nothing unshipped
 in the present, and no version numbers (a version on a public roadmap reads as a date).
 The miniatures in `views/ido/miniatures.rs` are schematic illustrations, not screenshots:
 keep them `aria-hidden` with the prose carrying the information, and never let one imply a
@@ -74,9 +79,9 @@ feature ido lacks. Which projects get a bespoke page is data — set `Project::p
   submodule and load first — never paste them inline. Cascade:
   `tokens.css` → `components.css` → `app.css` (mandatory order).
 - Format with `just fmt` (cargo fmt + leptosfmt) — **never `cargo fmt` alone**; it can't
-  format `view!` macros. Details in [conventions.md](vendor/latent-design/docs/conventions.md).
+  format `view!` macros. Details in the well's `conventions` page.
 - For local dev against a sibling `latent-ui`, add a `[patch]` override in `Cargo.toml`
-  (do not commit) — see [ecosystem.md](vendor/latent-design/docs/ecosystem.md#dependency-pinning).
+  (do not commit) — see the well's `ecosystem` page (dependency pinning).
 
 ## Commands
 
@@ -100,8 +105,8 @@ ln -s ../../vendor/latent-design .claude/skills/latent-design
 ```
 
 Run the symlink step **after** the submodule init above, or it dangles. On Windows use
-`New-Item -ItemType SymbolicLink` (needs Developer Mode) — see
-[bootstrap-new-app.md](vendor/latent-design/docs/bootstrap-new-app.md).
+`New-Item -ItemType SymbolicLink` (needs Developer Mode) — see the well's
+`bootstrap-new-app` page.
 
 ## CI
 

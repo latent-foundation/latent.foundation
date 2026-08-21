@@ -81,7 +81,8 @@ Body.
 and a malformed entry fails the build rather than the browser. `draft = true` entries show
 under `trunk serve` and are dropped from release builds. The filename's date prefix keeps
 the directory ordered without appearing in the URL, so an entry can be re-dated without
-breaking its link. Full reasoning: [`docs/log-section.md`](docs/log-section.md).
+breaking its link. Full reasoning: the `website-log-section` page in the **latent well** — the single
+authoritative home for latent. docs (`docs/` here holds pointer stubs).
 
 `style/app.css` is the only stylesheet that belongs here. Tokens and component styles come
 from the submodule and load first (`tokens.css` → `components.css` → `app.css` — the cascade

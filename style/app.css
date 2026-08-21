@@ -1517,7 +1517,6 @@
   margin: 0 0 var(--space-2);
 }
 
-.ido-arc.planned .ido-arc-title,
 .ido-arc.exploring .ido-arc-title {
   color: var(--color-text-secondary);
 }

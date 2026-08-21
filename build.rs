@@ -211,7 +211,7 @@ fn split_frontmatter<'a>(raw: &'a str, path: &Path) -> (&'a str, &'a str) {
         )
     });
     let body = rest[end + 4..].trim_start_matches(['\r', '\n']);
-    (&rest[..end], body)
+    (rest[..end].trim_end_matches('\r'), body)
 }
 
 /// The URL slug: the file stem minus its `YYYY-MM-DD-` prefix.

@@ -6,8 +6,8 @@
 //! [`crate::data::Project::page`]), and the detail page links onward.
 //!
 //! **Content rule:** every claim on this page is traceable to ido's own repo — its
-//! `README.md`, `CLAUDE.md`, or `docs/mcp-server.md`. Nothing shipped is written in the
-//! future tense, nothing unshipped in the present. See `docs/ido-page.md`.
+//! `README.md` or `CLAUDE.md`. Nothing shipped is written in the future tense, nothing
+//! unshipped in the present. Design notes: the latent well's `website-ido-page` page.
 //!
 //! This module composes only; the pieces live beside it — [`roadmap`] owns the roadmap
 //! data and timeline, [`diagrams`] the structural drawings, [`miniatures`] the schematic
@@ -86,7 +86,17 @@ fn IdoHero() -> impl IntoView {
             >
                 "source on github →"
             </a>
-            <span class="ido-hero-status">"in active development · not yet released"</span>
+            <a
+                href="https://github.com/latent-foundation/ido/releases/latest"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="ido-link-secondary"
+            >
+                "windows installer →"
+            </a>
+            <span class="ido-hero-status">
+                "in active development · macOS/Linux build from source"
+            </span>
         </div>
     }
 }

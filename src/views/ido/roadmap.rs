@@ -4,27 +4,31 @@
 //! [`crate::data`] — the copy is the thing being maintained, not the `view!` around it.
 //!
 //! **Every claim here must be traceable to ido's own repo** (`README.md`, `CLAUDE.md`, or
-//! `docs/mcp-server.md`). The one exception is mobile, which is a stated direction with no
-//! spec behind it, and is marked [`Horizon::Exploring`] precisely so it does not read as a
-//! promise. Nothing shipped is described in the future tense and nothing unshipped is
-//! described in the present.
+//! the latent well's `ido-mcp-design` page). The one exception is mobile, which is a stated
+//! direction with no spec behind it, and is marked [`Horizon::Exploring`] precisely so it
+//! does not read as a promise. Nothing shipped is described in the future tense and nothing
+//! unshipped is described in the present.
 //!
-//! Version numbers (1.0.0, 1.1.0) are deliberately absent: a version on a public roadmap
-//! reads as a date, and ido has not released yet. The horizons carry the ordering instead.
+//! Version numbers (1.0.0, 1.1.0) are deliberately absent even now that both have shipped:
+//! a version on a public roadmap reads as a date. The horizons carry the ordering instead.
 
 use leptos::prelude::*;
 
 use latent_ui::Icon;
 
 /// How far along an arc is. Ordering here is the order shown.
+///
+/// `Planned` (specced and sequenced, not yet started) is deliberately not a variant here:
+/// every current arc is either real or a bare direction, and adding a state nothing
+/// constructs just to keep a slot warm is the premature abstraction this codebase avoids.
+/// Re-add it the day an arc actually needs it — the exhaustive matches below will force it
+/// into every place that needs to know.
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub enum Horizon {
     /// Built and in daily use.
     Shipped,
     /// Actively being worked on, with a spec behind it.
     Next,
-    /// Specced and sequenced, not yet started.
-    Planned,
     /// A direction. No commitment, no schedule.
     Exploring,
 }
@@ -35,21 +39,17 @@ impl Horizon {
         match self {
             Horizon::Shipped => "SHIPPED",
             Horizon::Next => "NEXT",
-            Horizon::Planned => "PLANNED",
             Horizon::Exploring => "EXPLORING",
         }
     }
 
     /// Lucide glyph from `latent-ui`'s shared table, drawn inside the spine node.
     ///
-    /// Read top to bottom they describe a gradient of certainty: done, in motion, not
-    /// started, unknown. `minus` rather than a second square for `Planned` — the node is
-    /// already a square, and a square inside a square reads as a mistake.
+    /// Read top to bottom they describe a gradient of certainty: done, in motion, unknown.
     fn icon(self) -> &'static str {
         match self {
             Horizon::Shipped => "square-check",
             Horizon::Next => "chevron-right",
-            Horizon::Planned => "minus",
             Horizon::Exploring => "circle-help",
         }
     }
@@ -59,7 +59,6 @@ impl Horizon {
         match self {
             Horizon::Shipped => "shipped",
             Horizon::Next => "next",
-            Horizon::Planned => "planned",
             Horizon::Exploring => "exploring",
         }
     }
@@ -74,7 +73,7 @@ impl Horizon {
     fn projected(self) -> bool {
         match self {
             Horizon::Shipped | Horizon::Next => false,
-            Horizon::Planned | Horizon::Exploring => true,
+            Horizon::Exploring => true,
         }
     }
 }
@@ -102,18 +101,18 @@ pub static ARCS: &[Arc] = &[
         ],
     },
     Arc {
-        horizon: Horizon::Next,
+        horizon: Horizon::Shipped,
         title: "an MCP server over the store",
-        body: "The store moves into a Tauri-free crate, and a separate binary exposes it \
-               over MCP with read-only tools. Any MCP client can then read and search a \
-               well.",
+        body: "The store lives in a Tauri-free crate, and a separate binary exposes it over \
+               MCP with seven read-only tools. Any MCP client can read and search a well \
+               without ido running.",
         points: &[
-            "read-only first; write tools are a later, opt-in phase",
-            "one implementation of the store, shared with the app",
+            "well_info, search, get_entry, list_entries, backlinks, list_tasks, list_goals",
+            "ships inside the app as a Tauri sidecar — install once, register once",
         ],
     },
     Arc {
-        horizon: Horizon::Planned,
+        horizon: Horizon::Next,
         title: "semantic search",
         body: "Ask what you decided about something and find the note that never used \
                that word. Local embeddings, brute-force cosine over the vectors, fused \
